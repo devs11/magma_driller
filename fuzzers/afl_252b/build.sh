@@ -16,4 +16,7 @@ CC=clang make -j $(nproc)
 CC=clang make -j $(nproc) -C llvm_mode
 
 # compile afl_driver.cpp
-"./afl-clang-fast++" $CXXFLAGS -std=c++11 -c "afl_driver.cpp" -fPIC -o "$OUT/afl_driver.o"
+# "./afl-clang-fast++" $CXXFLAGS -std=c++11 -c "afl_driver.cpp" -fPIC -o "$OUT/afl_driver.o"
+
+# compile uninstrumented binary (vanilla) for QEMU mode
+g++ $CXXFLAGS -std=c++11 -c "$FUZZER/src/afl_driver.cpp" -fPIC -o "$OUT/afl_driver.o"
