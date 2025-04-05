@@ -6,17 +6,19 @@ set -e
 # - env FUZZER: path to fuzzer work dir
 ##
 
-if [ ! -d "$FUZZER/repo" ]; then
-    echo "fetch.sh must be executed first."
-    exit 1
-fi
+# if [ ! -d "$FUZZER/repo" ]; then
+#     echo "fetch.sh must be executed first."
+#     exit 1
+# fi
 
-cd "$FUZZER/repo"
-CC=clang make -j $(nproc)
-CC=clang make -j $(nproc) -C llvm_mode
+# cd "$FUZZER/repo"
+# CC=clang make -j $(nproc)
+# CC=clang make -j $(nproc) -C llvm_mode
 
-# compile afl_driver.cpp
-# "./afl-clang-fast++" $CXXFLAGS -std=c++11 -c "afl_driver.cpp" -fPIC -o "$OUT/afl_driver.o"
+# # compile afl_driver.cpp
+# # "./afl-clang-fast++" $CXXFLAGS -std=c++11 -c "afl_driver.cpp" -fPIC -o "$OUT/afl_driver.o"
 
-# compile uninstrumented binary (vanilla) for QEMU mode
-g++ $CXXFLAGS -std=c++11 -fPIC -o "$OUT/afl_driver.o"
+# # compile uninstrumented binary (vanilla) for QEMU mode
+# g++ $CXXFLAGS -std=c++11 -fPIC -o "$OUT/afl_driver.o"
+g++ $CXXFLAGS -std=c++11 -c "$FUZZER/src/afl_driver.cpp" -fPIC \
+    -o "$OUT/afl_driver.o"
