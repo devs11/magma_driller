@@ -2,7 +2,7 @@
 set -e
 
 apt-get update && \
-    apt-get install -y make build-essential clang-9 git wget
+    apt-get install -y make build-essential clang-8 git wget
 
 update-alternatives \
   --install /usr/lib/llvm              llvm             /usr/lib/llvm-9  20 \
@@ -29,6 +29,6 @@ update-alternatives \
     --slave   /usr/bin/llvm-tblgen       llvm-tblgen      /usr/bin/llvm-tblgen-9
 
 update-alternatives \
-  --install /usr/bin/clang                 clang                  /usr/bin/clang-9     20 \
-  --slave   /usr/bin/clang++               clang++                /usr/bin/clang++-9 \
-  --slave   /usr/bin/clang-cpp             clang-cpp              /usr/bin/clang-cpp-9
+  --install /usr/bin/clang                 clang                  /usr/bin/clang-8     20 \
+  --slave   /usr/bin/clang++               clang++                /usr/bin/clang++-8 \
+  --slave   /usr/bin/clang-cpp             clang-cpp              /usr/bin/clang-cpp-8
